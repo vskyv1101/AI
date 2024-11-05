@@ -1,1 +1,40 @@
 # AI
+```
+pip install openai==0.28
+```
+```
+import openai
+
+# OpenAI API 키 설정 (본인의 API 키로 교체)
+openai.api_key = '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'
+
+# ChatGPT에게 질문하는 함수
+def ask_chatgpt(question):
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",  # 사용할 모델 선택
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant specializing in nutrition information."},
+            {"role": "user", "content": question}
+        ],
+        max_tokens=100,  # 응답의 최대 길이
+        temperature=0.7  # 응답의 다양성 조절
+    )
+    return response.choices[0].message['content'].strip()
+
+# 사용자의 질문을 받고 답변하는 함수
+def nutrition_bot():
+    print("영양 정보 Q&A 봇에 오신 것을 환영합니다! 궁금한 영양 정보를 질문해보세요.")
+
+    while True:
+        question = input("질문 (종료하려면 '종료' 입력): ")
+        if question.lower() == "종료":
+            print("영양 정보 Q&A 봇을 종료합니다. 이용해주셔서 감사합니다!")
+            break
+
+        # ChatGPT로 질문 전달 및 답변 받기
+        answer = ask_chatgpt(question)
+        print("답변:", answer)
+
+# 봇 실행
+nutrition_bot()
+```
