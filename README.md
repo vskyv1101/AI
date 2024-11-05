@@ -6,7 +6,7 @@ pip install openai==0.28
 import openai
 
 # OpenAI API 키 설정 (본인의 API 키로 교체)
-openai.api_key = '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'
+openai.api_key = 'Your_API_KEY'
 
 # ChatGPT에게 질문하는 함수
 def ask_chatgpt(question):
